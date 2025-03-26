@@ -97,38 +97,49 @@ section {
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
+    height: 420px; /* 固定卡片高度 */
+    transform: translateZ(0); /* 启用硬件加速 */
+    will-change: box-shadow; /* 优化阴影变化性能 */
 }
 
 .game-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
 .card-img-top {
     height: 180px;
     object-fit: cover;
+    width: 100%; /* 确保图片宽度一致 */
 }
 
 .card-body {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 180px); /* 减去图片高度 */
 }
 
 .card-title {
     font-weight: bold;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
+    line-height: 1.2;
 }
 
 .card-text {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 0.8rem;
-    height: 40px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
+    line-height: 1.4;
+    height: auto;
+    min-height: 40px;
 }
 
 /* Game Rating */
@@ -136,6 +147,7 @@ section {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    margin-top: auto; /* 将评分推到底部 */
 }
 
 .stars {
@@ -162,6 +174,7 @@ section {
     width: 100%;
     font-weight: 500;
     transition: background-color 0.3s ease;
+    margin-top: auto; /* 确保按钮在底部 */
 }
 
 .btn-play:hover {
