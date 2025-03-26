@@ -39,8 +39,9 @@ body {
     margin-bottom: 1rem;
 }
 
-/* 游戏卡片样式 */
-.game-card {
+/* ===== 游戏卡片通用样式 ===== */
+.game-card, 
+.card {
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
@@ -49,26 +50,44 @@ body {
     display: flex;
     flex-direction: column;
     background: white;
+    margin-bottom: 1rem;
 }
 
-.game-card:hover {
+.game-card:hover,
+.card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+/* 卡片图片容器 */
+.card-img-container,
+.game-card-img-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* 固定图片容器高度 */
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.card-img-top,
 .game-card .card-img-top {
+    width: 100%;
     height: 200px; /* 固定图片高度 */
     object-fit: cover;
     background-color: #f8f9fa; /* 图片加载时的背景色 */
 }
 
+/* 卡片内容区域 */
+.card-body,
 .game-card .card-body {
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    height: 180px; /* 固定内容区域高度 */
 }
 
+.card-title,
 .game-card .card-title {
     font-size: 1.2rem;
     font-weight: 600;
@@ -76,6 +95,7 @@ body {
     color: var(--dark-color);
 }
 
+.card-text,
 .game-card .card-text {
     color: var(--secondary-color);
     font-size: 0.9rem;
@@ -91,6 +111,7 @@ body {
 .rating {
     display: flex;
     align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .rating .fas.fa-star,
@@ -107,14 +128,45 @@ body {
 }
 
 /* 新游戏标签样式 */
-.badge.bg-success {
+.badge.bg-success,
+.new-tag {
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 1;
+    z-index: 10;
     padding: 0.5rem 0.8rem;
     font-size: 0.8rem;
     border-radius: 20px;
+    background-color: #ff9800;
+    color: white;
+}
+
+/* Popular Games 部分特殊样式 */
+.popular-games .game-card,
+.popular-games .card {
+    height: 380px;
+}
+
+.popular-games .card-img-top {
+    height: 200px;
+}
+
+.popular-games .card-body {
+    height: 160px;
+}
+
+/* New Releases 部分特殊样式 */
+.new-releases .game-card,
+.new-releases .card {
+    height: 380px;
+}
+
+.new-releases .card-img-top {
+    height: 200px;
+}
+
+.new-releases .card-body {
+    height: 160px;
 }
 
 /* 分类卡片样式 */
@@ -140,16 +192,20 @@ body {
 }
 
 /* 按钮样式 */
-.btn-primary {
+.btn-primary,
+.play-btn {
     background-color: var(--primary-color);
     border: none;
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.play-btn:hover {
     background-color: #0b5ed7;
 }
 
@@ -199,9 +255,14 @@ footer .social-links a:hover {
         height: 300px;
     }
 
-    .game-card {
+    .game-card,
+    .card,
+    .popular-games .game-card,
+    .popular-games .card,
+    .new-releases .game-card,
+    .new-releases .card {
         height: auto;
-        min-height: 400px;
+        min-height: 380px;
     }
 
     .category-card {
@@ -210,11 +271,13 @@ footer .social-links a:hover {
 }
 
 /* 加载状态样式 */
-.game-card.loading {
+.game-card.loading,
+.card.loading {
     position: relative;
 }
 
-.game-card.loading::after {
+.game-card.loading::after,
+.card.loading::after {
     content: "";
     position: absolute;
     top: 0;
@@ -235,49 +298,19 @@ footer .social-links a:hover {
     }
 }
 
-/* 新增：修复卡片跳动问题 */
-.row-cols-1 {
-    margin: -0.5rem;
-}
-
-.col {
-    padding: 0.5rem;
-}
-
-.game-card .card-img-container {
-    position: relative;
-    padding-top: 56.25%; /* 16:9 宽高比 */
-    overflow: hidden;
-    background-color: #f8f9fa;
-}
-
-.game-card .card-img-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* 新增：确保内容区域高度一致 */
-.game-card .card-body {
-    display: flex;
-    flex-direction: column;
-    height: 180px; /* 固定内容区域高度 */
-}
-
-.game-card .card-text {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
+/* 确保所有卡片的底部元素对齐 */
+.card-footer,
 .game-card .card-footer {
-    padding: 1rem;
     background: none;
     border-top: none;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* 确保卡片按钮在底部 */
+.action-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
 }
