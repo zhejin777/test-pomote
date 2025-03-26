@@ -1,268 +1,355 @@
-/* 重置基础样式 */
-*, *::before, *::after {
-    box-sizing: border-box !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* 基础页面样式 */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
-    color: #333 !important;
-    background-color: #f8f9fa !important;
-    line-height: 1.5 !important;
-}
-
-/* 容器控制 */
-.container {
-    width: 100% !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 0 15px !important;
-}
-
-/* 防止布局跳动的核心样式 */
-.row {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    margin: 0 -15px !important;
-}
-
-.col {
-    position: static !important;
-    width: 100% !important;
-    padding: 15px !important;
-}
-
-@media (min-width: 768px) {
-    .row-cols-md-2 > .col {
-        width: 50% !important;
-        flex: 0 0 50% !important;
-    }
-}
-
-@media (min-width: 992px) {
-    .row-cols-lg-4 > .col {
-        width: 25% !important;
-        flex: 0 0 25% !important;
-    }
+/* Global Styles */
+:root {
+    --primary-color: #0066ff;
+    --secondary-color: #0052cc;
+    --accent-color: #ff9900;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --border-radius: 6px;
+    --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
     
-    .row-cols-lg-5 > .col {
-        width: 20% !important;
-        flex: 0 0 20% !important;
-    }
+    /* Category colors */
+    --action-color: #007bff;
+    --puzzle-color: #28a745;
+    --strategy-color: #ffc107;
+    --sports-color: #17a2b8;
+    --shooter-color: #dc3545;
+    --arcade-color: #6610f2;
 }
 
-/* 卡片容器 - 绝对固定高度 */
-.card, 
-.game-card,
-.card.h-100,
-.game-card.h-100 {
-    position: relative !important;
-    height: 400px !important;
-    width: 100% !important;
-    background-color: #fff !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
-    overflow: hidden !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    border: none !important;
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
 }
 
-.card:hover,
-.game-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
-}
-
-/* 卡片图片区域 - 绝对固定大小和位置 */
-.card-img-top,
-.card .card-img-top,
-.game-card .card-img-top {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 200px !important;
-    object-fit: cover !important;
-    z-index: 1 !important;
-}
-
-/* 卡片标题 - 绝对固定位置 */
-.card-title,
-.card .card-title,
-.game-card .card-title {
-    position: absolute !important;
-    top: 210px !important;
-    left: 15px !important;
-    right: 15px !important;
-    font-size: 18px !important;
-    font-weight: 600 !important;
-    margin: 0 !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    z-index: 2 !important;
-}
-
-/* 卡片描述 - 绝对固定位置和大小 */
-.card-text,
-.card .card-text,
-.game-card .card-text {
-    position: absolute !important;
-    top: 240px !important;
-    left: 15px !important;
-    right: 15px !important;
-    height: 80px !important;
-    overflow: hidden !important;
-    color: #6c757d !important;
-    font-size: 14px !important;
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    -webkit-box-orient: vertical !important;
-    z-index: 2 !important;
-}
-
-/* 评分区域 - 绝对固定位置 */
-.rating,
-.card .rating,
-.game-card .rating {
-    position: absolute !important;
-    bottom: 15px !important;
-    left: 15px !important;
-    display: flex !important;
-    align-items: center !important;
-    z-index: 2 !important;
-}
-
-.rating i {
-    color: #ffc107 !important;
-    font-size: 14px !important;
-    margin-right: 2px !important;
-}
-
-.rating span {
-    color: #6c757d !important;
-    font-size: 14px !important;
-    margin-left: 5px !important;
-}
-
-/* 按钮 - 绝对固定位置 */
-.btn-primary,
-.card .btn-primary,
-.game-card .btn-primary,
-a.btn-primary,
-a.play-now,
-a[class*="Play Now"] {
-    position: absolute !important;
-    bottom: 15px !important;
-    right: 15px !important;
-    background-color: #0d6efd !important;
-    color: white !important;
-    padding: 6px 15px !important;
-    border-radius: 4px !important;
-    text-decoration: none !important;
-    font-size: 14px !important;
-    border: none !important;
-    display: inline-block !important;
-    z-index: 2 !important;
-}
-
-/* 新标签 - 绝对固定位置 */
-.badge,
-.badge.bg-success,
-span[class*="New"] {
-    position: absolute !important;
-    top: 10px !important;
-    right: 10px !important;
-    background-color: #ff9800 !important;
-    color: white !important;
-    padding: 5px 10px !important;
-    border-radius: 20px !important;
-    font-size: 12px !important;
-    z-index: 3 !important;
-}
-
-/* 分类卡片 - 特殊处理 */
-.category-card {
-    height: 160px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-}
-
-.category-card i {
-    font-size: 3em !important;
-    margin-bottom: 10px !important;
-}
-
-.category-card .card-title {
-    position: static !important;
-    margin-top: 10px !important;
-    text-align: center !important;
-}
-
-/* 导航栏 */
+/* Navigation */
 .navbar {
-    background-color: #0d6efd !important;
-    padding: 1rem 0 !important;
+    background-color: var(--primary-color);
+    padding: 0.8rem 1rem;
 }
 
 .navbar-brand {
-    color: white !important;
-    font-size: 1.5rem !important;
-    font-weight: 600 !important;
-    text-decoration: none !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255,255,255,.85) !important;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
 }
 
-/* 章节标题 */
-.section-title {
-    margin: 30px 0 20px !important;
-    font-size: 24px !important;
-    font-weight: 600 !important;
-    color: #333 !important;
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
 }
 
-/* 页脚 */
+.btn-search {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    font-weight: 500;
+}
+
+.btn-search:hover {
+    background-color: #f0f0f0;
+}
+
+/* Section Styles */
+section {
+    padding: 2rem 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--dark-color);
+}
+
+.view-all {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* Game Cards */
+.game-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    height: 40px;
+    overflow: hidden;
+}
+
+/* Game Rating */
+.game-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+}
+
+.stars i {
+    font-size: 0.9rem;
+}
+
+.rating-score {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Play Button */
+.btn-play {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    width: 100%;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-play:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* New Tag */
+.new-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+/* Game Categories */
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    text-decoration: none;
+    color: white;
+}
+
+.category-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.category-name {
+    font-weight: 500;
+}
+
+/* Category backgrounds */
+.bg-action {
+    background-color: var(--action-color);
+}
+
+.bg-puzzle {
+    background-color: var(--puzzle-color);
+}
+
+.bg-strategy {
+    background-color: var(--strategy-color);
+}
+
+.bg-sports {
+    background-color: var(--sports-color);
+}
+
+.bg-shooter {
+    background-color: var(--shooter-color);
+}
+
+.bg-arcade {
+    background-color: var(--arcade-color);
+}
+
+/* Footer */
 footer {
-    background-color: #212529 !important;
-    color: white !important;
-    padding: 3rem 0 !important;
-    margin-top: 3rem !important;
+    background-color: var(--dark-color);
+    color: white;
+    padding: 2.5rem 0 0;
+    margin-top: 2rem;
 }
 
 footer h5 {
-    font-size: 18px !important;
-    margin-bottom: 1rem !important;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
 }
 
 footer a {
-    color: white !important;
-    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
-    text-decoration: underline !important;
+    color: white;
 }
 
-/* 轮播图 */
-.carousel-item img {
-    height: 400px !important;
-    object-fit: cover !important;
+.social-links {
+    display: flex;
+    gap: 1rem;
 }
 
-/* 响应式调整 */
-@media (max-width: 768px) {
-    .card, .game-card {
-        height: 420px !important;
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.copyright {
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+.copyright p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* Game Page Styles */
+.game-container {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.game-iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 4px;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.loading::after {
+    content: "Loading...";
+    display: inline-block;
+    animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: "Loading"; }
+    40% { content: "Loading."; }
+    60% { content: "Loading.."; }
+    80% { content: "Loading..."; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .category-card {
+        padding: 1rem 0.5rem;
     }
     
-    .carousel-item img {
-        height: 300px !important;
+    .category-icon {
+        font-size: 1.5rem;
+    }
+    
+    .card-text {
+        height: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .card-img-top {
+        height: 150px;
     }
 }
