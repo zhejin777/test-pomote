@@ -12,11 +12,17 @@
 /* 全局样式 */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-/* 固定布局防止跳动 */
-.container, .row, .col, section {
-    position: relative;
+/* 防止布局跳动的关键设置 */
+.container, .row, section, .col {
+    width: 100%;
+}
+
+.row, .col {
+    margin: 0 !important;
+    padding: 0.5rem !important;
 }
 
 /* 导航栏样式 */
@@ -25,8 +31,14 @@ body {
 }
 
 /* 轮播图样式 */
-.carousel-item img {
+#featuredGames, .carousel, .carousel-inner, .carousel-item {
     height: 400px;
+    overflow: hidden;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 400px !important;
     object-fit: cover;
 }
 
@@ -44,225 +56,236 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ===== 游戏卡片通用样式 ===== */
-.game-card, 
-.card {
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    height: 400px !important; /* 强制固定卡片高度 */
+/* 卡片容器样式 */
+.row .col {
+    height: 400px !important;
     display: flex;
-    flex-direction: column;
-    background: white;
-    margin-bottom: 1rem;
-    overflow: hidden;
 }
 
-.game-card:hover,
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+/* 游戏卡片样式 - 严格固定高度和内部元素尺寸 */
+.card, .game-card {
+    width: 100% !important;
+    height: 400px !important;
+    min-height: 400px !important;
+    max-height: 400px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0.25rem !important;
+    overflow: hidden !important;
+    background: white !important;
+    position: relative !important;
 }
 
-/* 卡片图片容器 */
-.card-img-container,
-.game-card-img-container {
-    position: relative;
-    width: 100%;
-    height: 200px !important; /* 强制固定图片容器高度 */
-    overflow: hidden;
-    background-color: #f8f9fa;
+.card:hover, .game-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
 }
 
-.card-img-top,
-.game-card .card-img-top {
-    width: 100%;
-    height: 200px !important; /* 强制固定图片高度 */
-    object-fit: cover;
-    background-color: #f8f9fa; /* 图片加载时的背景色 */
+/* 卡片图片区域 - 严格固定高度 */
+.card-img-container, .game-card .card-img-container {
+    width: 100% !important;
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    background-color: #f8f9fa !important;
 }
 
-/* 卡片内容区域 */
-.card-body,
-.game-card .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    height: 180px !important; /* 强制固定内容区域高度 */
-    overflow: hidden;
+.card-img-top, .game-card .card-img-top {
+    width: 100% !important;
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+    object-fit: cover !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
 }
 
-.card-title,
-.game-card .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--dark-color);
-    height: 1.5em; /* 固定标题高度 */
-    overflow: hidden;
-    text-overflow: ellipsis;
+/* 卡片内容区域 - 严格固定高度和布局 */
+.card-body, .game-card .card-body {
+    flex: 1 !important;
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 1rem !important;
+    overflow: hidden !important;
 }
 
-.card-text,
-.game-card .card-text {
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    flex-grow: 1;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    height: 4.5em !important; /* 固定3行文字高度 */
+/* 标题区域固定高度 */
+.card-title, .game-card .card-title {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--dark-color) !important;
+    height: 1.5em !important;
+    min-height: 1.5em !important;
+    max-height: 1.5em !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+}
+
+/* 描述文本区域固定高度 */
+.card-text, .game-card .card-text {
+    color: var(--secondary-color) !important;
+    font-size: 0.9rem !important;
+    height: 4.5em !important;
+    min-height: 4.5em !important;
+    max-height: 4.5em !important;
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    margin-bottom: 1rem !important;
+    flex-grow: 0 !important;
+}
+
+/* 底部操作区域固定高度 */
+.action-container {
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: auto !important;
 }
 
 /* 评分样式 */
 .rating {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    height: 24px; /* 固定评分区域高度 */
+    display: flex !important;
+    align-items: center !important;
+    height: 24px !important;
+    overflow: hidden !important;
 }
 
 .rating .fas.fa-star,
 .rating .far.fa-star,
 .rating .fas.fa-star-half-alt {
-    color: #ffc107;
-    font-size: 0.9rem;
+    color: #ffc107 !important;
+    font-size: 0.9rem !important;
 }
 
 .rating span {
-    color: var(--secondary-color);
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
-}
-
-/* 新游戏标签样式 */
-.badge.bg-success,
-.new-tag {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
-    border-radius: 20px;
-    background-color: #ff9800;
-    color: white;
-}
-
-/* Popular Games 部分特殊样式 */
-.popular-games .game-card,
-.popular-games .card {
-    height: 400px !important;
-}
-
-/* New Releases 部分特殊样式 */
-.new-releases .game-card,
-.new-releases .card {
-    height: 400px !important;
-}
-
-/* 游戏分类卡片固定高度 */
-.category-card {
-    transition: transform 0.3s ease;
-    border: none;
-    height: 160px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.category-card:hover {
-    transform: translateY(-5px);
-}
-
-.category-card .card-body {
-    padding: 1.5rem;
-    height: auto !important;
-}
-
-.category-card .fa-3x {
-    margin-bottom: 0.5rem;
+    color: var(--secondary-color) !important;
+    font-size: 0.9rem !important;
+    margin-left: 0.5rem !important;
 }
 
 /* 按钮样式 */
-.btn-primary,
-.play-btn,
-[class*="开始游戏"] {
-    background-color: var(--primary-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    text-align: center;
-    height: 38px !important; /* 固定按钮高度 */
+.btn-primary, .play-btn {
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 5px !important;
+    transition: background-color 0.3s ease !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-.btn-primary:hover,
-.play-btn:hover,
-[class*="开始游戏"]:hover {
-    background-color: #0b5ed7;
+.btn-primary:hover, .play-btn:hover {
+    background-color: #0b5ed7 !important;
 }
 
-/* 确保底部按钮固定高度 */
-.action-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    height: 38px !important; /* 固定底部操作区高度 */
+/* 新游戏标签样式 */
+.badge.bg-success {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 10 !important;
+    padding: 0.5rem 0.8rem !important;
+    font-size: 0.8rem !important;
+    border-radius: 20px !important;
+    background-color: #ff9800 !important;
+    color: white !important;
+}
+
+/* 游戏分类卡片样式 */
+.category-card {
+    height: 160px !important;
+    min-height: 160px !important;
+    max-height: 160px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.3s ease !important;
+    border: none !important;
+}
+
+.category-card:hover {
+    transform: translateY(-5px) !important;
+}
+
+.category-card .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1.5rem !important;
+    height: 160px !important;
+    min-height: 160px !important;
+    max-height: 160px !important;
+}
+
+.category-card .card-title {
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0 !important;
+}
+
+.category-card .fa-3x {
+    font-size: 3em !important;
 }
 
 /* 页脚样式 */
-footer, 
-footer .container,
-footer .row,
-footer .col-md-4 {
-    position: relative;
-    background-color: var(--dark-color);
-    color: white;
-}
-
 footer {
-    padding: 3rem 0;
-    margin-top: 3rem;
+    background-color: var(--dark-color) !important;
+    color: white !important;
+    padding: 3rem 0 !important;
+    margin-top: 3rem !important;
 }
 
 footer h5 {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem !important;
+    margin-bottom: 1.5rem !important;
 }
 
 footer .list-unstyled li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem !important;
 }
 
 footer .social-links a {
-    margin-right: 1rem;
-    transition: opacity 0.3s ease;
+    margin-right: 1rem !important;
+    transition: opacity 0.3s ease !important;
 }
 
 footer .social-links a:hover {
-    opacity: 0.8;
+    opacity: 0.8 !important;
 }
 
 /* 响应式调整 */
 @media (max-width: 768px) {
     .carousel-item img {
-        height: 300px;
+        height: 300px !important;
     }
 
-    .game-card,
-    .card,
-    .popular-games .game-card,
-    .popular-games .card,
-    .new-releases .game-card,
-    .new-releases .card {
+    .card, .game-card {
         height: 400px !important;
     }
 
@@ -271,46 +294,46 @@ footer .social-links a:hover {
     }
 }
 
-/* 加载状态样式 */
-.game-card.loading,
-.card.loading {
-    position: relative;
+/* 附加修复 - 强制元素布局 */
+* {
+    box-sizing: border-box !important;
 }
 
+.row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.col {
+    flex: 0 0 auto !important;
+}
+
+/* 确保所有按钮文本样式一致 */
+.btn {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* 加载状态样式 */
 .game-card.loading::after,
 .card.loading::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%) !important;
+    background-size: 200% 100% !important;
+    animation: loading 1.5s infinite !important;
 }
 
 @keyframes loading {
     0% {
-        background-position: 200% 0;
+        background-position: 200% 0 !important;
     }
     100% {
-        background-position: -200% 0;
+        background-position: -200% 0 !important;
     }
-}
-
-/* 修复所有卡片严格相同高度 */
-.row-cols-1 .col,
-.row-cols-md-2 .col,
-.row-cols-lg-4 .col,
-.row-cols-2 .col,
-.row-cols-md-3 .col,
-.row-cols-lg-5 .col {
-    display: flex;
-    margin-bottom: 1rem;
-}
-
-/* 页面语言设置 */
-html[lang="zh-CN"] {
-    /* 中文页面的默认设置，无需修改 */
 }
